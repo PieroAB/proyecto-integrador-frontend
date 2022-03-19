@@ -9,7 +9,7 @@
 
 ## Resumen
 
-Proyecto Integrandor Parte Frontend usando Visual Studio 2019, ASP.NET, Microsoft Azure, SQL Server, GitHub, Watson Assistant.
+Proyecto Integrador Parte Frontend usando Visual Studio 2019, ASP.NET, Microsoft Azure, SQL Server, GitHub, Watson Assistant.
 
 ## Objetivos
 
