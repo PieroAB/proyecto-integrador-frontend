@@ -1,0 +1,290 @@
+﻿@using Proyecto_Elecciones2021.Models;
+@{
+    ViewBag.Title = "ResumenPlanGobierno";
+}
+
+@{
+    var partido1 = (PartidoPolitico)ViewBag.partido1;
+    var plan1 = (List<PlanGobierno>)ViewBag.plan1;
+
+    var partido2 = (PartidoPolitico)ViewBag.partido2;
+    var plan2 = (List<PlanGobierno>)ViewBag.plan2;
+}
+
+
+<div class="cuerpo">
+
+    @Html.Partial("_Sidebar")
+
+
+    <div class="home">
+        <div class="partido-politicos fondo">
+            <p>COMPARAR - RESUMEN DEL PLAN DE GOBIERNO</p>
+        </div>
+       
+
+
+        <div class="comparacion-partidos informacion-general d-block d-sm-flex">
+            <div class="col-12 col-sm-6 col-md-6">
+                <img src="@Url.Content(partido1.imagenPartido)" alt="@partido1.nombrePartido" />
+                <p>@partido1.nombrePartido</p>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
+                <img src="@Url.Content(partido2.imagenPartido)" alt="@partido2.nombrePartido" />
+                <p>@partido2.nombrePartido</p>
+            </div>
+        </div>
+
+        @{
+            var obtenerplan1 = plan1[0];
+            var obtenerplan2 = plan2[0];
+        }
+
+        <div class="informacion-general d-block ">
+            <div class="comparacion-titulo-principal">
+                <span>DIMENSION SOCIAL</span>
+            </div>
+
+            <div class="d-block d-sm-flex">
+                <div class="comparacion-planes col-12 col-sm-6 col-md-6">
+                    <div class="experiencia-titulo comparacion-titulo d-block">
+                        <span class="title d-none d-sm-block">OBJETIVOS</span>
+                        <span class="title d-block d-sm-none">@partido1.nombrePartido</span>
+                    </div>
+                    @if (plan1.Count() == 1 && obtenerplan1.nroPro.Equals(0))
+                    {
+                        <p></p>
+                    }
+                    else
+                    {
+                        <div class="resumen-planes">
+                            @foreach (var item in plan1)
+                            {
+                                if (item.socPro == "") { }
+                                else
+                                {
+                                    <div class="descripcion">
+                                        <p>@item.socPro</p>
+                                    </div>
+                                }
+                            }
+                        </div>
+
+                    }
+                </div>
+
+                <div class="comparacion-planes col-12 col-sm-6 col-md-6">
+                    <div class="experiencia-titulo comparacion-titulo d-block">
+                        <span class="title d-none d-sm-block">OBJETIVOS</span>
+                        <span class="title d-block d-sm-none">@partido2.nombrePartido</span>
+                    </div>
+                    @if (plan2.Count() == 1 && obtenerplan2.nroPro.Equals(0))
+                    {
+                        <p></p>
+                    }
+                    else
+                    {
+                        <div class="resumen-planes">
+                            @foreach (var item in plan2)
+                            {
+                                if (item.socPro == "") { }
+                                else
+                                {
+                                    <div class="descripcion">
+                                        <p>@item.socPro</p>
+                                    </div>
+                                }
+                            }
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="informacion-general d-block ">
+            <div class="comparacion-titulo-principal">
+                <span>DIMENSION INSTITUCIONAL</span>
+            </div>
+            <div class="d-block d-sm-flex">
+                <div class="comparacion-planes col-12 col-sm-6 col-md-6">
+                    <div class="experiencia-titulo comparacion-titulo d-block">
+                        <span class="title d-none d-sm-block">OBJETIVOS</span>
+                        <span class="title d-block d-sm-none">@partido1.nombrePartido</span>
+                    </div>
+                    @if (plan1.Count() == 1 && obtenerplan1.nroPro.Equals(0))
+                    {
+                        <p></p>
+                    }
+                    else
+                    {
+                        <div class="resumen-planes">
+                            @foreach (var item in plan1)
+                            {
+                                if (item.insPro == "") { }
+                                else
+                                {
+                                    <div class="descripcion">
+                                        <p>@item.insPro</p>
+                                    </div>
+                                }
+                            }
+                        </div>
+
+                    }
+                </div>
+
+
+                <div class="comparacion-planes col-12 col-sm-6 col-md-6">
+                    <div class="experiencia-titulo comparacion-titulo d-block">
+                        <span class="title d-none d-sm-block">OBJETIVOS</span>
+                        <span class="title d-block d-sm-none">@partido2.nombrePartido</span>
+                    </div>
+                    @if (plan2.Count() == 1 && obtenerplan2.nroPro.Equals(0))
+                    {
+                        <p></p>
+                    }
+                    else
+                    {
+                        <div class="resumen-planes">
+                            @foreach (var item in plan2)
+                            {
+                                if(item.insPro == "") { }
+                                else
+                                {
+                                    <div class="descripcion">
+                                        <p>@item.insPro</p>
+                                    </div>
+                                }
+                            }
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="informacion-general d-block ">
+            <div class="comparacion-titulo-principal">
+                <span>DIMENSION ECONÓMICA</span>
+            </div>
+            <div class="d-block d-sm-flex">
+                <div class="comparacion-planes col-12 col-sm-6 col-md-6">
+                    <div class="experiencia-titulo comparacion-titulo d-block">
+                        <span class="title d-none d-sm-block">OBJETIVOS</span>
+                        <span class="title d-block d-sm-none">@partido1.nombrePartido</span>
+                    </div>
+                    @if (plan1.Count() == 1 && obtenerplan1.nroPro.Equals(0))
+                    {
+                        <p></p>
+                    }
+                    else
+                    {
+                        <div class="resumen-planes">
+                            @foreach (var item in plan1)
+                            {
+                                if (item.ecoPro == "") { }
+                                else
+                                {
+                                    <div class="descripcion">
+                                        <p>@item.ecoPro</p>
+                                    </div>
+                                }
+                            }
+                        </div>
+
+                    }
+                </div>
+
+                <div class="comparacion-planes col-12 col-sm-6 col-md-6">
+                    <div class="experiencia-titulo comparacion-titulo d-block">
+                        <span class="title d-none d-sm-block">OBJETIVOS</span>
+                        <span class="title d-block d-sm-none">@partido2.nombrePartido</span>
+                    </div>
+                    @if (plan2.Count() == 1 && obtenerplan2.nroPro.Equals(0))
+                    {
+                        <p></p>
+                    }
+                    else
+                    {
+                        <div class="resumen-planes">
+                            @foreach (var item in plan2)
+                            {
+                                if (item.ecoPro == "") { }
+                                else
+                                {
+                                    <div class="descripcion">
+                                        <p>@item.ecoPro</p>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!--Falta Territorial-->
+
+        <div class="informacion-general d-block ">
+            <div class="comparacion-titulo-principal">
+                <span>  DIMENSIÓN TERRITORIAL - AMBIENTAL</span>
+            </div>
+            <div class="d-block d-sm-flex">
+                <div class="comparacion-planes col-12 col-sm-6 col-md-6">
+                    <div class="experiencia-titulo comparacion-titulo d-block">
+                        <span class="title d-none d-sm-block">OBJETIVOS</span>
+                        <span class="title d-block d-sm-none">@partido1.nombrePartido</span>
+                    </div>
+                    @if (plan1.Count() == 1 && obtenerplan1.nroPro.Equals(0))
+                    {
+                        <p></p>
+                    }
+                    else
+                    {
+                        <div class="resumen-planes">
+                            @foreach (var item in plan1)
+                            {
+                                if (item.natPro == "") { }
+                                else
+                                {
+                                    <div class="descripcion">
+                                        <p>@item.natPro</p>
+                                    </div>
+                                }
+                            }
+                        </div>
+
+                    }
+                </div>
+
+                <div class="comparacion-planes col-12 col-sm-6 col-md-6">
+                    <div class="experiencia-titulo comparacion-titulo d-block">
+                        <span class="title d-none d-sm-block">OBJETIVOS</span>
+                        <span class="title d-block d-sm-none">@partido2.nombrePartido</span>
+                    </div>
+                    @if (plan2.Count() == 1 && obtenerplan2.nroPro.Equals(0))
+                    {
+                        <p></p>
+                    }
+                    else
+                    {
+                        <div class="resumen-planes">
+                            @foreach (var item in plan2)
+                            {
+                                if (item.natPro == "") { }
+                                else
+                                {
+                                    <div class="descripcion">
+                                        <p>@item.natPro</p>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

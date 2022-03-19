@@ -1,0 +1,19 @@
+﻿
+
+@{
+    ViewBag.Title = "Felicidades";
+}
+
+
+<div>
+
+    <div class="felicidades">
+        <h2>FELICIDADES!!!!</h2>
+
+        <p>Su voto fue enviado con exito</p>
+        <p>Usted podrá visualizar los resultados generales al finalizar la jornala electoral</p>
+        @ViewBag.mensaje
+        <a class="btn btn-info col-8"  href="@Url.Action("Home","Home")">Ir al Inicio</a>
+        
+    </div>
+</div>

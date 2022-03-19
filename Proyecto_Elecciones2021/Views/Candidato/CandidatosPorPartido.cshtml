@@ -1,0 +1,299 @@
+﻿@using Proyecto_Elecciones2021.Models;
+@model IEnumerable<Proyecto_Elecciones2021.Models.Candidato>
+
+@{
+    ViewBag.Title = "CandidatosPorPartido";
+}
+
+
+
+<div class="cuerpo">
+
+    @Html.Partial("_Sidebar")
+
+    <div class="home">
+
+
+        <div class="cabecera flex-column flex-md-row">
+          
+            <div class="partido-titulo d-block d-md-flex"  >
+                <div class="w-100 d-flex align-items-center mb-3">
+                    <img src="@Url.Content(((PartidoPolitico)ViewBag.partido).imagenPartido)"
+                         alt="@(((PartidoPolitico)ViewBag.partido).nombrePartido)" />
+
+                    <p>@(((PartidoPolitico)ViewBag.partido).nombrePartido)</p>
+                </div>
+                <div class="w-100">
+                    <a href="@(((PartidoPolitico)ViewBag.partido).paginaPartido)" class="btn btn-info col-12  col-md-10 col-lg-6 float-md-right" target="_blank">Página Oficial</a>
+                </div>
+            </div>
+        </div>
+
+
+        
+
+        <div>
+
+            <div class="seleccion">
+
+                <ul class="d-block d-md-flex">
+                    <li onclick="mostrar(presidenciales,presidencial)" id="presidencial" class="activado col-12  col-md-4"><p>PresidenciaL</p></li>
+                    <li onclick="mostrar(congresistas,congresal)" id="congresal" class="col-12  col-md-4 "><p>Congresal</p></li>
+                    <li onclick="mostrar(parlamentarios,parlamento)" id="parlamento" class="col-12 col-md-4 "><p>Parlamento Andino</p></li>
+                </ul>
+
+            </div>
+
+
+
+
+            <div id="presidenciales" class="">
+                @if (((List<Candidato>)ViewBag.presidenciales).Count() == 0)
+                {
+                    <div class="informacion-general ">
+                        <div class="informacion-general nocandidato-pre">
+                            <h4>En este ámbito @(((PartidoPolitico)ViewBag.partido).nombrePartido) no presenta candidatos a la presidencia del Perú.</h4>
+                        </div>
+                    </div>
+                }
+                else
+
+                {
+                    <div class="partido-candidatos-p informacion-general">
+                        @foreach (var item in (List<Candidato>)ViewBag.presidenciales)
+                        {
+                            <div class="partido-candidatos">
+                                <div>
+                                    <a href="@Url.Action("HojaVida", "HojaVida", new { idper= item.idPersona})">
+                                        <div class="partido-candidatos-f front">
+                                            <img src="@Url.Content(item.fotoCandidato)" alt="@item.nombrePartido @item.apepatCandidato @item.apematCandidato" />
+                                            <p>@item.nombreCandidato @item.apepatCandidato @item.apematCandidato<p />
+                                            <h4>@item.descCargo</h4>
+                                        </div>
+
+                                        <div class="partido-candidatos-b back">
+                                            <p>@item.nombreCandidato @item.apepatCandidato @item.apematCandidato<p />
+                                            <p><i class="fas fa-info-circle"> </i>Mayor Información</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+
+                    <div class="informacion-general">
+                        <div class="plan-gobierno">
+                            <p>Propuestas</p>
+                            <a class="btn btn-info col-12 col-md-4" target="_blank" href="@Url.Content(((PartidoPolitico)ViewBag.partido).pdfPartido)">Ver Plan de Gobierno</a>
+
+                        </div>
+
+                        <div class="w-100 row propuesta">
+
+                            <div class="col-sm-12 col-md-6 col-lg-3 d-flex flex-column ">
+                                <div class="partido-propuesta-titulo">Social</div>
+                                @foreach (var itemp in (List<PlanGobierno>)ViewBag.plan)
+                                {
+                                    <div>
+                                        <p>@itemp.socPro</p>
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="col-sm-12 col-md-6 col-lg-3 d-flex flex-column">
+                                <div class="partido-propuesta-titulo">Económico</div>
+                                @foreach (var itemp in (List<PlanGobierno>)ViewBag.plan)
+                                {
+                                    <div>
+                                        <p>@itemp.ecoPro</p>
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="col-sm-12 col-md-6 col-lg-3 d-flex flex-column">
+                                <div class="partido-propuesta-titulo">Natural</div>
+                                @foreach (var itemp in (List<PlanGobierno>)ViewBag.plan)
+                                {
+                                    <div>
+                                        <p>@itemp.natPro</p>
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="col-sm-12 col-md-6 col-lg-3 d-flex flex-column">
+                                <div class="partido-propuesta-titulo">Institucional</div>
+                                @foreach (var itemp in (List<PlanGobierno>)ViewBag.plan)
+                                {
+                                    <div>
+                                        <p>@itemp.insPro</p>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div id="congresistas" class="d-none" >
+               
+
+                <div class="d-block text-center align-items-center contenedor informacion-general">
+
+                    <p class="sub">BUSCAR POSTULANTES AL CONGRESO POR DEPARTAMENTO</p>
+                    <div class="col-12 col-sm-12 col-md-4 m-auto">
+                        @Html.DropDownList("depar", (SelectList)ViewBag.departamentos, new { id = "departamentoSeleccionado", @class = "btn btn-default col-12 col-sm-10" })
+                    </div>
+
+                    <div class="col-12 mt-3">
+                        <button class="btn btn-danger col-12 col-sm-4 col-md-3" id="boton">Buscar</button>
+                    </div>
+                </div>
+
+                
+                
+
+                <div id="listacongresistas" class="listacongresista informacion-general">
+
+                </div>
+
+            </div>
+
+            <div id="parlamentarios" class="informacion-general listacongresista d-none" >
+                @if (((List<Candidato>)ViewBag.parlamentarios).Count() == 0)
+                {
+                <div class="informacion-general nocandidato-pre">
+                    <h4>En este ámbito @(((PartidoPolitico)ViewBag.partido).nombrePartido) no presenta candidatos al parlamento andino.</h4>
+                </div>
+                }
+                else
+                {
+                    foreach (var item in (List<Candidato>)ViewBag.parlamentarios)
+                    {
+                        <div class="congresista-parlamento">
+                            <a href="@Url.Action("HojaVida", "HojaVida", new { idper= item.idPersona})">
+                               
+                                <img src="@Url.Content(item.fotoCandidato)"
+                                        alt="@item.nombrePartido @item.apepatCandidato @item.apematCandidato" />
+                                <p class="numero">@item.nroCandidato</p>
+                                <p>@item.nombreCandidato @item.apepatCandidato @item.apematCandidato</p>
+                                <h4>Parlamento</h4>
+                              
+                            </a>
+
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    const appNode = document.querySelector('#listacongresistas');
+    let boton = document.getElementById('boton');
+    var combo = document.getElementById('departamentoSeleccionado');
+    let codpar = @((int)ViewBag.codigoPart)
+    boton.addEventListener("click", Refresh);
+
+    function Refresh() {
+        fetch("@Url.Content("~/Candidato/CandidatosCongresistas?id=")"+ codpar+"&depar=" + combo.value)
+            .then(function (result) {
+                if (result.ok) {
+                    return result.json();
+                }
+            })
+
+            .then(function (data) {
+                const todosLosItems = [];
+
+                while (appNode.firstChild) {
+                    //mientras exista un item seguira elimandose
+                    appNode.removeChild(appNode.firstChild);
+                }
+                console.log(data.length);
+
+                data.forEach((item)=> {
+
+                    // creo el contenedor
+                    const contenedor = document.createElement('div');
+                    contenedor.className = "congresista-parlamento";
+
+                    // cargar la foto del candidato
+                    const foto = document.createElement('img');
+                    foto.className = "";
+                    foto.src = "../../Imagenes/candidatos/" + item.dniCandidato+".jpg";
+                    foto.alt = item.nombreCandidato + item.apepatCandidato + item.apematCandidato;
+
+                    // carga el numero de candidato
+                    const numero = document.createElement('p');
+                    numero.className = "numero";
+                    numero.textContent = item.nroCandidato
+
+                    // carga los nombres del candidato
+                    const nombres = document.createElement('p')
+                    nombres.className = "";
+                    nombres.textContent = item.nombreCandidato +" "+ item.apepatCandidato +" "+ item.apematCandidato;
+
+                    // carga el texto de que es congresista
+                    const congre = document.createElement('h4')
+                    congre.className = "";
+                    congre.textContent = "Congresista";
+
+                    // carga url que redirige a la hoja vida
+                    const link = document.createElement('a');
+
+                    link.href = "../../HojaVida/HojaVida?idper=" + item.idPersona;
+                    // agregamos los datos al a href
+                    link.appendChild(foto);
+                    link.appendChild(numero);
+                    link.appendChild(nombres);
+                    link.appendChild(congre);
+
+                    // agregamos el a al div
+                    contenedor.appendChild(link);
+
+                    // agregamos al arreglo
+                    todosLosItems.push(contenedor);
+
+                })
+                if (data.length == 0) {
+
+                    const contenedor = document.createElement('div');
+                    contenedor.className = "vacio";
+                    contenedor.innerHTML = "@(((PartidoPolitico)ViewBag.partido).nombrePartido) no tiene postulantes al congreso para esta región"
+                    todosLosItems.push(contenedor);
+                }
+                //agregamos al div general con todos los datos
+                appNode.append(...todosLosItems);
+            })
+    };
+
+</script>
+<script>
+
+    function mostrar(valor,li) {
+        const presidenciales = document.getElementById("presidenciales");
+        const congresistas = document.getElementById("congresistas");
+        const parlamentarios = document.getElementById("parlamentarios");
+
+        const presidencial = document.getElementById("presidencial");
+        const congresal = document.getElementById("congresal");
+        const parlamento = document.getElementById("parlamento");
+
+        presidenciales.classList.add("d-none",);
+        congresistas.classList.add("d-none");
+        parlamentarios.classList.add("d-none");
+
+        presidencial.classList.remove("activado");
+        congresal.classList.remove("activado");
+        parlamento.classList.remove("activado");
+
+        valor.classList.remove("d-none");
+        li.classList.add("activado");
+
+
+    }
+</script>

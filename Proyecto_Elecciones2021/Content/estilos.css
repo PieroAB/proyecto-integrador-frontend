@@ -1,0 +1,1756 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight:300;
+}
+
+
+@keyframes swing {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    20% {
+        transform: rotate(15deg);
+    }
+
+    40% {
+        transform: rotate(0deg);
+    }
+
+    60% {
+        transform: rotate(-15deg);
+    }
+
+    80% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(15deg);
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+:root {
+    --color1: #e9e9e9;
+    --colorVerde: #26a69a;
+    --colorRojo: #d8493e;
+    --colorNegro: #5a4d4a;
+    --colorAzul: #6365fa;
+    --colorBlanco: #ffffff;
+    --colorSidebar: #333333;
+    --colorCard: #f9fdfc;
+    --colorMarron: #504846;
+    --colorBorder: #6c757d63;
+    --colorTabla: #e0efec6b;
+    --colorTabla2: #D8D6D6;
+    --colorFondo: #ffffffc7;
+    --colorSubtitulos: #8e4022d4;
+    --colorTituloFondo: #5a4d4a;
+}
+
+/*
+    SIDEBAR - BARRA LATERAL IZQUIERDA
+*/
+
+body {
+    background-image: url(../Imagenes/logos/fondo.png);
+    
+}
+
+.body {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+}
+
+
+.cuerpo {
+    width: 100%;
+    max-width: 1700px;
+}
+
+.header {
+    display: none;
+    width: 80%;
+    float: right;
+    border: 1px solid red;
+    max-width: 1650px;
+}
+.menu-info.a {
+    margin-top:15px;
+    margin-bottom :10px;
+}
+
+.menu-info.a p{
+    color:white;
+    font-size:1.3em !important;
+    margin-bottom:0;
+}
+
+
+.menu-info {
+    margin: 5px 5px 20px;
+    background: #434343;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.menu-info p {
+    color: white;
+    text-align:center;
+    font-weight:400;
+}
+
+
+.home {
+    width: 80%;
+    float: right;
+    max-width: 1650px;
+    z-index:1;
+}
+
+.contenedor-menu {
+    background-color: var(--colorSidebar);
+    position: fixed;
+    width: 100%;
+    z-index:1000;
+}
+.btn-menu{
+    display:none;
+}
+
+.sidebar {
+    width: 20%;
+    height: 100%;
+    position: fixed;
+    max-width: 350px;
+    background-color: var(--colorSidebar);
+}
+
+
+
+.btn-menu {
+    height: 45px;
+    cursor: pointer;
+}
+
+.btn-menu i {
+    color:white;
+    margin-left: 10px;
+    margin-top: 5px;
+    font-size: 2.5em;
+  
+}
+
+
+.sidebar ul li a {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    margin-top: 10px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    margin: 10px 5px;
+}
+
+.sidebar ul li a:hover {
+    text-decoration: none;
+}
+
+.sidebar ul > li a:hover i {
+    color: #16c7ff;
+    text-shadow: 0px 0px 10px rgba(22, 199, 255, 0.5);
+}
+
+.sidebar ul > li a:hover p {
+    color: #b8bfce;
+}
+
+.sidebar ul li a i {
+    font-size: 1.30em;
+    color: white;
+}
+
+.sidebar ul li a:hover > i::before {
+    display: inline-block;
+    animation: swing ease-in-out 0.5s 2 alternate;
+}
+
+.sidebar ul li a p {
+    margin-left: 15px;
+    text-decoration: none;
+    color: white;
+    display: block;
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+
+/*
+    HOME-HOME
+
+*/
+.principal > p {
+    display:block;
+    text-align:center;
+    font-size:1.9em !important ;
+    letter-spacing:2px;
+}
+
+.principal > img {
+    display: flex;
+    margin: 15px auto 0px;
+}
+
+
+.informacion {
+    width: 100%;
+    padding: 20px;
+}
+
+.informacion .row > div {
+    margin-bottom: 20px;
+}
+
+.card {
+    height: 100%;
+    padding: 20px 20px;
+    background-color: var(--colorCard);
+}
+
+.card .card-img {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.card .card-title {
+    text-align: center;
+    font-size: 0.9em;
+    font-weight: 700;
+    color: var(--colorMarron);
+}
+
+.card .card-text {
+    font-size: 15px;
+    text-align: justify;
+    line-height: 22px;
+}
+
+.card span {
+    font-weight: 600;
+    font-size: 14px;
+    text-align: justify;
+}
+
+.card ul {
+    margin-left: 20px;
+}
+
+.card ul li {
+    font-size: 15px;
+    line-height: 22px;
+}
+
+/*
+    HOME-LISTA-PARTIDOS
+*/
+.partido-politicos {
+    background: rgba(255,255,255,0.5);
+    padding:20px 20px 15px ;
+   
+}
+
+.partido-politicos > p {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.6em;
+    /*color: var(--colorMarron);*/
+    color :#cc3131;
+    letter-spacing: 1px;
+    transform: scaleY(1.4);
+    margin-bottom: 0;
+    margin: 0px auto;
+}
+
+.home-partidos-todos {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    background: rgba(255,255,255,0.5);
+    border-radius: 8px;
+    padding-top: 15px;
+}
+
+.home-lista-partidos {
+    width: 160px;
+    margin-bottom: 15px;
+}
+
+.home-lista-partidos > div {
+    width: 100%;
+    height: 100%;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+
+.home-lista-partidos div a {
+    text-decoration: none;
+    display: flex;
+    height: 100%;
+}
+
+.front, .back {
+    backface-visibility: hidden;
+    transition: 0.6s;
+    transform-style: preserve-3d;
+}
+
+.front {
+    transform: rotateY(0deg);
+    z-index: 2;
+    position: relative;
+    width: 100%;
+}
+
+.back {
+    transform: rotateY(-180deg);
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--colorMarron);
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.home-lista-partidos-f {
+    background: var(--colorBlanco);
+    border: 1px solid var(--colorBorder);
+    border-radius: 8px;
+    padding: 0 5px;
+}
+
+.home-lista-imagen-partidos {
+    width: 60%;
+    height: 90px;
+    display: flex;
+    margin: 10px auto;
+    border-radius: 3px;
+}
+
+.home-lista-partidos-f p {
+    color: var(--dark);
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+    font-size: 0.8em;
+    text-transform: uppercase;
+}
+
+.home-lista-partidos-b {
+    padding: 0px 10px;
+    border-radius: 8px;
+}
+
+.home-lista-partidos-b p {
+    font-weight: 500;
+}
+
+.home-lista-partidos-b i {
+    margin-right: 5px;
+}
+
+.home-lista-partidos:hover .home-lista-partidos-f {
+    transform: rotateY(180deg);
+    z-index: 1;
+}
+
+.home-lista-partidos:hover .home-lista-partidos-b {
+    transform: rotateY(0deg);
+    z-index: 2;
+}
+
+.home-lista-partidos-b p + p:hover {
+    text-decoration: underline;
+}
+
+
+
+/*
+    HOME-PARTIDO
+*/
+.seleccion {
+    margin: 15px;
+    border: 1px solid var(--colorBorder);
+    background: #75c6ec2e;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.seleccion .activado{
+    background:white;
+}
+
+.seleccion > ul{
+    display:flex;
+    flex-direction:row;
+  
+    margin:0 50px;
+    margin-bottom:0px;
+    
+}
+
+.seleccion > ul > li {
+    text-align:center;
+    text-decoration: none;
+    list-style: none;
+    text-transform:uppercase;
+    font-weight:700;
+    padding:15px;
+    cursor:pointer;
+    border-bottom:0px;
+    border-bottom:2px solid #a419bd;
+   
+}
+.seleccion > ul > li > p {
+    margin-bottom:0px;
+    transform:scaleY(1.3);
+    letter-spacing:1px;
+    font-weight: 900;
+}
+
+.cabecera {
+    display: flex;
+    margin: 15px 30px;
+    align-items: center;
+}
+
+.cabecera > p {
+    font-size: 1.8em;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--colorMarron);
+    width: 50%;
+    text-align: center;
+    transform: scaleY(1.5);
+}
+
+.partido-titulo {
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.partido-titulo  p {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.45em;
+    color :#cc3131;
+    margin-left: 15px;
+    transform: scaleY(1.3);
+    margin-bottom: 0;
+}
+
+.partido-titulo img {
+    width: 70px;
+    border: 1px solid black;
+}
+
+.partido-titulo a {
+  text-transform:uppercase;
+      padding: 10px;
+    font-weight: 500;
+}
+
+
+
+.partido-candidatos-p {
+    display: flex;
+    align-content: space-around;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.partido-candidatos {
+    padding: 0;
+    width: 250px;
+    margin: 15px;
+    display: flex;
+}
+
+.partido-candidatos > div {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.partido-candidatos > div a {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: black;
+}
+
+.partido-candidatos-f {
+    background: var(--colorBlanco);
+    border: 1px solid #6c757d94;
+    border-radius: 8px;
+}
+
+.partido-candidatos-b {
+    padding: 0px 10px;
+    border-radius: 8px;
+}
+
+.partido-candidatos > div img {
+    width: 75%;
+    height: 250px;
+    display: flex;
+    margin: 10px auto;
+    border-radius: 6px;
+}
+
+.partido-candidatos-f p {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.partido-candidatos-f h4 {
+    text-align: center;
+    font-size: 1.20em;
+}
+
+.partido-candidatos-b > p {
+    font-size: 1.20em;
+    font-weight: 300;
+}
+
+.partido-candidatos-b > p + p {
+    font-weight: 600;
+}
+
+.partido-candidatos-b i {
+    margin-right: 15px;
+}
+
+
+.partido-candidatos:hover .partido-candidatos-f {
+    transform: rotateY(180deg);
+    z-index: 1;
+}
+
+.partido-candidatos:hover .partido-candidatos-b {
+    transform: rotateY(0deg);
+    z-index: 2;
+}
+
+.partido-candidatos-b p + p:hover {
+    text-decoration: underline;
+}
+
+.plan-gobierno {
+    padding: 10px 15px;
+}
+
+.plan-gobierno > p {
+    display: inline-flex;
+    font-size: 1.30em;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: left;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    color: var(--colorTituloFondo);
+}
+
+.plan-gobierno > a {
+    float: right;
+    text-transform: uppercase;
+    padding: 10px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.propuesta {
+    margin-right: 0;
+    margin-left: 0;
+    padding: 10px 15px;
+}
+
+.propuesta > div {
+    padding-right: 1px;
+    padding-left: 1px;
+    margin-bottom: 15px;
+}
+
+.propuesta div div ~ div {
+    display: flex;
+    padding: 8px;
+    height: 370px;
+    background: var(--colorTabla);
+
+}
+
+.propuesta div div ~ div p {
+    margin: auto;
+    font-size: 14px;
+    
+}
+
+
+.partido-propuesta-titulo {
+    background: var(--colorMarron);
+    color: white;
+    text-align: center;
+    font-size: 1.20em;
+    text-transform: uppercase;
+    padding: 10px 0;
+    font-weight: 500;
+}
+
+.propuesta > div > div:nth-child(even) {
+    background: var(--colorTabla2);
+}
+
+.propuesta > div > div {
+    outline: 2px solid #555;
+}
+
+
+.sub{
+    font-weight:700;
+    font-size:1.20em;
+    color: var(--colorTituloFondo);
+    transform:scaleY(1.3);
+}
+
+.listacongresista {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.congresista-parlamento {
+    padding: 0;
+    width: 250px;
+    margin: 15px;
+    display: flex;
+}
+.congresista-parlamento > a {
+    background: var(--colorBlanco);
+    border: 1px solid #6c757d94;
+    border-radius: 8px;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    color: black;
+}
+
+.congresista-parlamento > a > img {
+    width: 75%;
+    height: 250px;
+    display: flex;
+    margin: 10px auto;
+    border-radius: 6px;
+}
+
+.congresista-parlamento > a > p{
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.congresista-parlamento > a > h4 {
+    text-align: center;
+    font-size: 1.20em;
+}
+
+.vacio {
+    font-size: 1.30em;
+    font-weight: bold;
+    padding: 20px;
+    color: #ec1717;
+}
+
+.nocandidato-pre{
+    padding:50px;
+    text-align:center;
+}
+
+.congresista-parlamento .numero {
+    border: 1px solid red;
+    text-align: center;
+    border-radius: 100px;
+    width: 50px;
+    background: #d80000;
+    color: white;
+    height: 50px;
+    padding: 8px;
+    font-weight: 900;
+    margin: 0px auto;
+    font-size: 1.30em;
+}
+
+
+
+
+
+
+/*
+    HOJA VIDA - HOJA VIDA
+*/
+.candidato-perfil {
+    background: var(--colorFondo);
+    border-radius: 10px;
+    border: 1px solid var(--colorBorder);
+    margin: 15px;
+    margin-bottom: 25px;
+}
+
+.candidato{
+    flex-wrap:wrap;
+}
+
+
+.candidato-foto {
+    margin: auto;
+}
+
+.candidato-foto > div {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+    margin: 25px auto;
+    width:170px;
+}
+
+.candidato-foto-f {
+    background: var(--colorMarron);
+    display: flex;
+    border-radius: 8px;
+}
+
+.candidato-foto-b {
+    border-radius: 8px;
+}
+
+.candidato-foto-f img, .candidato-foto-b img {
+    width: 170px;
+    height: 100%;
+    border-radius:8px;
+    border : 1px solid var(--colorBorder);
+ 
+}
+
+
+.candidato-nombre p {
+    color: var(--colorMarron);
+    margin: 10px;
+    font-size: 1.40em;
+    font-weight: 700;
+}
+
+.hoja-vida > div > p {
+    margin: 5px 15px;
+    font-weight: 700;
+    font-size: 1.50em;
+    color: var(--colorTituloFondo);
+}
+
+.hoja-vida > div{
+    width:100%;
+    display:flex;
+    align-items:center;
+    padding:7px;
+}
+
+.hoja-vida > div > a {
+    display: block;
+    text-align: center;
+    font-weight: 500;
+    margin: 5px 15px 5px auto;
+}
+
+.info{
+    padding: 10px 15px;
+}
+
+.info > span {
+    display: inherit;
+    color: var(--colorMarron);
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size:17px;
+    transform:scaleY(1.4);
+    text-decoration:underline;
+}
+
+.info > p {
+    font-weight: 600;
+    text-align:center;
+    font-size:14px;
+}
+
+.info > p > span {
+    text-transform: uppercase;
+    font-weight: 300;
+ 
+}
+
+.candidato-foto:hover .candidato-foto-f {
+    transform: rotateY(180deg);
+    z-index: 1;
+    cursor:pointer;
+}
+
+.candidato-foto:hover .candidato-foto-b {
+    transform: rotateY(0deg);
+    z-index: 2;
+    cursor:pointer;
+}
+
+
+
+
+
+.informacion-general {
+    border: 1px solid var(--colorBorder);
+    margin: 15px;
+    margin-bottom:25px;
+    border-radius: 8px;
+    background: var(--colorFondo);
+}
+
+
+.educacion {
+    margin: 15px;
+    border: 1px solid var(--colorBorder);
+    border-top-color: transparent;
+    border-bottom: none;
+    border-radius: 9px 9px 0 0;
+    padding:0;
+}
+
+.educacion .educacion-titulo {
+    background: var(--colorTituloFondo);
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 0 0 1px var(--colorTituloFondo);
+}
+
+.educacion-titulo span, .experiencia-titulo span {
+    display: block;
+    text-align: center;
+    font-size: 1.10em;
+    color: var(--colorBlanco);
+    font-weight: 600;
+    transform: scaleY(1.3);
+    text-transform: uppercase;
+    padding: 7px;
+}
+.educacion-titulo :first-child {
+    border-bottom: 1px solid var(--colorBorder);
+    padding-bottom: 0px;
+}
+
+.educacion-descripcion > div > p, .educacion-vacio > div > p {
+    margin-bottom: 0;
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid var(--colorBorder);
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.educacion-vacio > div {
+    background: var(--colorTabla);
+}
+
+.educacion-descripcion > div {
+    display: flex;
+    flex-direction: row;
+}
+
+.educacion-descripcion > div > p {
+    width: 50%;
+}
+
+
+
+.educacion-descripcion:nth-child(even) > div:nth-child(odd),
+.educacion-descripcion:nth-child(odd) > div:nth-child(even) {
+    background: var(--colorTabla);
+}
+
+
+.educacion-descripcion:nth-child(even) > div:nth-child(even),
+.educacion-descripcion:nth-child(odd) > div:nth-child(odd) {
+    background: var(--colorTabla2);
+}
+
+
+.experiencia-titulo, .experiencia-descripcion {
+    display: flex;
+}
+
+.experiencia-titulo {
+    background: var(--colorTituloFondo);
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 0 0 1px var(--colorTituloFondo);
+}
+
+.experiencia-laboral {
+    border: 1px solid var(--colorBorder);
+}
+
+.experiencia-titulo span, .experiencia-descripcion p {
+    width: calc(100% / 2);
+    margin-bottom: 0;
+    padding: 10px;
+    text-align: center;
+}
+
+
+
+
+
+
+/*
+    BUSQUEDA-BUSQUEDA
+*/
+
+.fondo{
+    background:none;
+}
+
+.oculto {
+    display: none;
+}
+
+
+.contenedor {
+    background: var(--colorFondo);
+    border: 1px solid var(--colorBorder);
+    margin: 15px;
+    border-radius: 8px;
+    padding: 15px 0px;
+    margin-bottom: 15px;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: row;
+}
+
+.contenedor select {
+    margin: 0 auto;
+}
+
+.contenedor > div {
+    display: flex;
+    justify-content: space-around
+}
+
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+#busqueda {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+}
+
+.alerta {
+    font-size: 1.45em;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+
+/* 
+    COMPARAR - RESUMEN PLAN DE GOBIERNO
+*/
+
+.comparacion-partidos {
+    display: flex;
+}
+
+.comparacion-partidos > div {
+    text-align: center;
+}
+
+.comparacion-partidos > div > img {
+    width: 120px;
+    height: 150px;
+    margin: 15px auto;
+    display: flex;
+    border-radius: 3px;
+    border: 1px solid var(--colorBorder);
+}
+
+.comparacion-partidos > div > p {
+    text-transform: uppercase;
+    font-size: 1.15em;
+    font-weight: 700;
+    transform: scaleY(1.4);
+    color: #288a6e;
+}
+
+.comparacion-planes {
+    margin: 15px 0px;
+}
+
+.title {
+    text-align: center;
+    margin: 0 auto;
+    text-transform: uppercase;
+    width: 100% !important;
+}
+
+.comparacion-titulo-principal {
+    padding: 10px 20px;
+    background: var(--colorSubtitulos);
+    border-bottom: 1px solid var(--colorBorder);
+    border-radius: 8px 8px 0 0;
+}
+
+.informacion-general > div > span {
+    font-size: 1.35em;
+    font-weight: 600;
+    color: var(--colorBlanco);
+    display:block;
+}
+
+.experiencia-titulo.comparacion-titulo {
+    box-shadow: none !important;
+}
+
+.resumen-planes {
+    border: 1px solid var(--colorBorder);
+}
+
+.resumen-planes > .descripcion {
+    outline: 1px solid var(--colorBorder);
+}
+
+.resumen-planes > .descripcion > p {
+    margin: auto;
+    font-size: 14px;
+    padding: 5px;
+}
+
+.resumen-planes div:nth-child(even) {
+    background: var(--colorTabla2);
+}
+
+.resumen-planes div:nth-child(odd) {
+    background: var(--colorTabla);
+}
+
+
+/*
+   COMPARAR - COMPARAR CADIDATOS
+*/
+
+.margen{
+    margin:0!important;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*
+    LOGIN
+*/
+.login {
+    display: flex;
+    margin: 0 40px;
+    height: 100%;
+}
+
+.login-i {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    padding-right: 40px;
+}
+
+.login-d {
+    width: 50%;
+    border-left: 2px solid green;
+    padding-left: 40px;
+}
+
+.login-organizaciones {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.login-div-medio {
+    border-right: 2px solid transparent;
+    border-left: 2px solid transparent;
+    padding: 0px 10px;
+    border-image: linear-gradient(to bottom, #3acfd5 40%, #ffffff 100%) 1;
+}
+
+.login-imagen-jne {
+    height: 100px;
+    width: 100px;
+}
+
+.login-imagen-gob {
+    width: 250px;
+    height: 70px;
+}
+
+.login-imagen-onpe {
+    width: 120px;
+    height: 90px;
+}
+
+.login-img-elecciones {
+    width: 65%;
+    height: 45%;
+    margin: auto;
+}
+
+.login-header {
+    margin: 0 10px;
+}
+
+.login h1 {
+    font-size: 1.80em;
+    font-weight: bold;
+    color: var(--colorRojo);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.login-header p {
+    text-align: justify;
+}
+
+.login-formulario {
+    border-radius: 10px;
+    width: 300px;
+    margin: 0 auto;
+    display: block;
+    background: rgba(255,255,255,0.3);
+    padding: 10px;
+}
+
+.login-formulario div a {
+    text-decoration: none;
+    font-size: 1em;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    letter-spacing: -1px;
+    color: var(--colorAzul);
+}
+
+.login-formulario div a:hover {
+    opacity: 0.9;
+}
+
+.mostrar {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #555;
+}
+
+.login-formulario span, .captcha {
+    font-weight: bold;
+    font-size: 1.0em;
+    color: var(--colorNegro);
+}
+.login-mensaje {
+    font-weight: 700;
+    text-align: center;
+}
+
+.tool {
+    width: 90%;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.tool .tooltiptext {
+    background-color: #555;
+    margin-top: 10px;
+    color: var(--colorBlanco);
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    font-size: 0.9em;
+    transition: opacity 0.3s;
+    line-height: 15px;
+}
+
+.tool .texto {
+    padding: 10px 10px 10px 10px;
+    width: 100%;
+}
+
+.tool .dni {
+    margin-top: 50px;
+    width: 100%;
+    height: 100px;
+    padding: 10px 30px 0px 30px;
+}
+
+.tool::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    margin-left: 5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #555 transparent;
+}
+
+
+.mostrar:hover ~ .tool {
+    visibility: visible;
+    opacity: 1;
+}
+
+.btn-verde {
+    text-decoration: none;
+    color: #fff;
+    background-color: var(--colorVerde);
+    text-align: center;
+    letter-spacing: .5px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.btn-verde:hover,
+.btn-verde:focus,
+.btn-verde:active {
+    color: #fff;
+}
+
+
+/**Estilos al Captcha*/
+
+#CaptchaImage {
+    display: block;
+    margin: -10px auto -40px auto;
+}
+
+
+
+/*
+
+    VOTACION - SUFRAGIO
+
+*/
+
+.sufragio-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+}
+
+img.gob-peru, img.onpe {
+    width: 180px;
+    height: 140px;
+    display: block;
+    margin:  auto;
+}
+
+.imagen-sufragio {
+    width: 20%;
+    
+}
+
+
+.titulo-sufragio {
+    text-align: center;
+    width: 60%;
+    color: #613030;
+}
+.titulo-sufragio h1 {
+    font-size: 3.5em;
+    letter-spacing:2px;
+}
+
+.titulo-sufragio p {
+
+    font-size: 1.5em;
+    line-height:11px;
+    font-weight:400;
+    letter-spacing:1.1px;
+}
+.titulo-sufragio .sufragio-sub{
+     font-size: 1.6em !important;
+     font-weight:700;
+}
+
+.tiempo-cabecera{
+    width:60%;
+    margin : 0 auto;
+}
+.tiempo-sufragio {
+    text-align: center;
+    text-decoration: double underline;
+    font-size: 1.5em;
+}
+
+.tiempo-importante {
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.1em;
+}
+.tiempo-sufragio, #minutos, #segundos {
+    font-weight: 500;
+}
+
+.enviar-sufragio {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+}
+
+
+.bloquepresidencial, .bloquecongresal, .bloqueparlamental {
+    width: 60%;
+    margin: 30px auto;
+}
+
+.partidovotopre, .partidovotocong {
+    display: flex;
+    margin-bottom: 10px;
+    
+}
+.instrucciones-congreso {
+    display:flex;
+}
+.voto-cabecera-congreso {
+    width: 70%;
+    background-color: #989a90d1;
+    padding: 10px;
+}
+.voto-cabecera-congreso-pre {
+    width: 30%;
+    background-color: #989a90d1;
+    padding: 10px;
+    margin-left: 20px;
+
+}
+
+.voto-cabecera-presidente, .instrucciones-congreso {
+    width: 60%;
+    margin: 30px auto;
+   
+}
+.voto-cabecera-presidente {
+    background-color: #989a90d1;
+    padding: 10px;
+
+}
+
+
+.voto-cabecera-presidente h3, .voto-cabecera-congreso h3, .voto-cabecera-congreso-pre h3{
+    text-align: center;
+    font-weight: 800;
+    font-size: 1.40em;
+    text-transform: uppercase;
+    margin-bottom:15px;
+    height:40px;
+    vertical-align:middle;
+
+}
+.voto-cabecera-presidente p ,.voto-cabecera-congreso p, .voto-cabecera-congreso-pre p{
+    font-size:1em;
+    text-align:center;
+    font-weight:400;
+    margin-bottom:0;
+    text-transform:uppercase;
+    line-height:19px;
+}
+
+
+.partidovotopre {
+    background-color: #90c1e075;
+}
+
+
+.nombrepartido {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    width: 50%;
+}
+.nombrepartidoc {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    width: 45%;
+    background-color: #86808a6b;
+}
+
+.nombrepartido p, .nombrepartidoc p {
+    font-size: 1.20em;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.imagennombrepartido {
+    display: flex;
+    width: 50%;
+    justify-content: flex-end;
+
+}
+
+.imagennombrepartidoc {
+    width: 25%;
+    display: flex;
+    background-color: #86808a6b;
+    justify-content: flex-end;
+}
+.parlamento-color {
+    background: #cdda8299 !important;
+}
+
+.votopreferencial {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    margin-left:20px;
+}
+
+.imagennombrepartido img, .imagennombrepartidoc img, .check-presidencia, .check-congreso, .check-parlamento {
+    width: 90px;
+    height: 90px;
+    border: 1px solid black;
+}
+
+
+.imagennombrepartido > :nth-child(1), .imagennombrepartido > :nth-child(2) {
+    border-right: none;
+}
+.marca {
+    width:90px;
+    height:90px;
+    background:white;
+    border:1px solid black;
+
+}
+
+
+.numero {
+    height: 90px;
+    width: 90px;
+    font-size: 3em;
+    font-weight: 700;
+
+    padding: 10px;
+}
+
+  
+
+/*
+    FELICIDADES
+*/
+
+.felicidades {
+    width: 400px;
+    height: 250px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+    background: rgba(255,255,255,0.3);
+    align-self: center;
+    border-radius:15px;
+    padding-top:25px;
+}
+.felicidades >:nth-child(n){
+    font-weight:600;
+    color:#613030;
+
+}
+
+.felicidades a.btn.btn-info.col-8 {
+    color: white !important;
+}
+
+    @media screen and (max-width: 767px) {
+        .btn-menu {
+            display: block;
+        }
+
+        .sidebar {
+            margin-top: -1px;
+            padding: 0px 10px 0px;
+            width: 300px;
+            position: fixed;
+            border-radius: 0px 0px 15px 15px;
+            z-index: 1000;
+            height: auto;
+        }
+
+        .contenedor-menu .menu {
+            display: none;
+        }
+
+        .sidebar ul li a {
+            padding: 10px;
+        }
+
+        .home, .header {
+            width: 100%;
+            margin-top: 55px;
+        }
+        .menu-info.b{
+            display:none;
+        }
+        /*HOME - HOME*/
+        /*
+        HOME-PARTIDO POLITICO
+    */
+        .propuesta div div ~ div {
+            height: 150px;
+        }
+
+
+        /*
+        HOME - PARTIDOS POLITICOS
+    */
+        .home-lista-partidos {
+            width: 140px;
+        }
+
+
+        /*
+        HOJA DE VIDA - HOJA DE VIDA
+    */
+
+        .hoja-vida > div > p {
+            text-align: center;
+            margin: 5px auto;
+        }
+
+        .hoja-vida > div > a {
+            margin: 5px auto;
+        }
+
+
+        /*
+       COMPARAR - BUSQUEDA
+    */
+        .contenedor {
+            display: block;
+            margin: 5px;
+            margin-bottom: 15px;
+        }
+    }
+
+
+
+
+    @media screen and (max-width: 480px) {
+
+        /*
+        Sidebar
+    */
+
+        .sidebar {
+            min-width: 100%
+        }
+
+            .sidebar ul li a p {
+                margin-left: 25px;
+            }
+
+        /*
+        HOME - PARTIDOS POLITICOS
+    */
+        .partido-politicos > p {
+            font-size: 1.3em;
+            text-align: center;
+            margin: 0px auto;
+            letter-spacing: normal;
+        }
+
+        .home-partidos-todos {
+            width: 100%;
+        }
+
+
+        /*
+        HOME-PARTIDO POLITICO
+    */
+
+        .propuesta div div ~ div {
+            height: 280px;
+        }
+
+
+
+        /*
+         HOJA DE VIDA - HOJA DE VIDA
+     */
+        .informacion-general > div > span {
+            text-align: center;
+        }
+
+
+
+        .educacion {
+            margin: 15px 8px;
+        }
+
+            .educacion p {
+                font-size: 14px;
+            }
+
+        .experiencia-titulo, .experiencia-descripcion {
+            display: block !important;
+        }
+
+            .experiencia-titulo span, .experiencia-descripcion > p {
+                width: 100% !important;
+            }
+
+
+
+
+
+
+        .login {
+            margin: 10px 10px 10px 10px;
+        }
+
+        .login-i {
+            width: 100%;
+            padding: 0;
+        }
+
+        .login-organizaciones {
+            display: none;
+        }
+
+        .login-img-elecciones {
+            margin: 20px auto;
+        }
+
+        .login-d {
+            width: 100%;
+            border: none;
+            padding: 0;
+        }
+
+        .login-i h1 {
+            font-size: 1.30rem;
+            display: block;
+        }
+
+        .login p {
+            font-weight: 400;
+            font-size: 0.9em;
+        }
+
+        .login-header h1 {
+            display: none;
+        }
+
+        .login-div-medio {
+            border: none;
+        }
+
+        .login-formulario {
+            width: 70%;
+        }
+
+        .login-formulario {
+            font-size: 0.9em;
+        }
+
+        span {
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+    }
+
+
+
+    @media screen and (max-width: 370px) {
+        .login-formulario {
+            width: 90%;
+        }
+
+
+        /*
+        HOJA DE VIDA - HOJA DE VIDA
+    */
+
+    }
+
+
+    @media screen and (min-width: 470px) {
+    }
+
+    @media screen and (min-width: 768px) {
+
+        .sidebar {
+            width: 30%;
+        }
+
+        .home {
+            width: 70%;
+        }
+
+
+        .body {
+            height: 100%;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        .sidebar {
+            width: 20%;
+        }
+
+        .home {
+            width: 80%;
+        }
+    }

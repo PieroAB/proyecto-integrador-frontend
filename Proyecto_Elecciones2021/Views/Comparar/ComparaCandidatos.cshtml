@@ -1,0 +1,708 @@
+﻿@using Proyecto_Elecciones2021.Models;
+@{
+    ViewBag.Title = "ComparaCandidatos";
+}
+@{
+    var candidato1 = (Persona)ViewBag.persona1;
+    var edubas1 = (EducacionBasicaHV)ViewBag.edubashv1;
+    var edutec1 = (List<EstudiosTecnicosHV>)ViewBag.esttechv1;
+    var edunouni1 = (List<EstudiosNoUniversitariosHV>)ViewBag.estnounihv1;
+    var eduuni1 = (List<EstudiosUniversitariosHV>)ViewBag.estunihv1;
+    var edupos1 = (List<EstudiosPostgradoHV>)ViewBag.estposhv1;
+    var trabaj1 = (List<TrabajosHV>)ViewBag.trabajoshv1;
+    var ambpen1 = (List<AmbitosPenalesHV>)ViewBag.ambpenhv1;
+    var otramb1 = (List<OtrasPenalidadesHV>)ViewBag.otrapenhv1;
+
+    var candidato2 = (Persona)ViewBag.persona2;
+    var edubas2 = (EducacionBasicaHV)ViewBag.edubashv2;
+    var edutec2 = (List<EstudiosTecnicosHV>)ViewBag.esttechv2;
+    var edunouni2 = (List<EstudiosNoUniversitariosHV>)ViewBag.estnounihv2;
+    var eduuni2 = (List<EstudiosUniversitariosHV>)ViewBag.estunihv2;
+    var edupos2 = (List<EstudiosPostgradoHV>)ViewBag.estposhv2;
+    var trabaj2 = (List<TrabajosHV>)ViewBag.trabajoshv2;
+    var ambpen2 = (List<AmbitosPenalesHV>)ViewBag.ambpenhv2;
+    var otramb2 = (List<OtrasPenalidadesHV>)ViewBag.otrapenhv2;
+}
+
+
+
+
+<div class="cuerpo">
+
+
+    @Html.Partial("_Sidebar")
+
+    <div class="home">
+        <div class="partido-politicos fondo">
+            <p>COMPARAR - CANDIDATOS A LA PRESIDENCIA</p>
+        </div>
+
+
+        <div class="comparacion-partidos informacion-general d-block d-sm-flex">
+            <div class="col-12 col-sm-6 col-md-6">
+                <img src="@Url.Content(candidato1.fotoPersona)" alt="@candidato1.nomPersona @candidato1.apepatPersona @candidato1.apematPersona" />
+                <p>@candidato1.nomPersona @candidato1.apepatPersona @candidato1.apematPersona</p>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
+                <img src="@Url.Content(candidato2.fotoPersona)" alt="@candidato2.nomPersona @candidato2.apepatPersona @candidato2.apematPersona" />
+                <p>@candidato2.nomPersona @candidato2.apepatPersona @candidato2.apematPersona</p>
+            </div>
+        </div>
+
+        <div class="informacion-general d-block ">
+
+
+            <div class="comparacion-titulo-principal">
+                <span>INFORMACION ACADÉMICA</span>
+            </div>
+
+            <div class="d-block d-md-flex">
+
+                <div class=" col-12 col-sm-12 col-md-6 p-3">
+                    <div class="educacion margen ">
+                        <div class="educacion-titulo">
+                            <span class="titulo d-block d-md-none">@candidato1.nomPersona @candidato1.apepatPersona</span>
+                            <span class="titulo">EDUCACIÓN BÁSICA</span>
+
+                        </div>
+                        <div class="educacion-descripcion">
+                            <div>
+                                <p>Primaria</p>
+                                <p>@edubas1.primaria</p>
+                            </div>
+                            <div>
+                                <p>Secundaria</p>
+                                <p>@edubas1.secundaria</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-6 p-3">
+                    <div class="educacion margen">
+                        <div class="educacion-titulo">
+                            <span class="titulo d-block d-md-none">@candidato2.nomPersona @candidato2.apepatPersona</span>
+                            <span class="titulo">EDUCACIÓN BÁSICA</span>
+
+                        </div>
+
+                        <div class="educacion-descripcion">
+                            <div>
+                                <p>Primaria</p>
+                                <p>@edubas2.primaria</p>
+                            </div>
+
+                            <div>
+                                <p>Secundaria</p>
+                                <p>@edubas2.secundaria</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="d-block d-md-flex">
+
+                @{
+                    var obtenerEdu1 = edutec1[0];
+                    var obtenerEdu2 = edutec2[0];
+                }
+                <div class="col-12 col-sm-12 col-md-6 p-3">
+                    <div class="educacion margen">
+                        <div class="educacion-titulo">
+                            <span class="titulo d-block d-md-none">@candidato1.nomPersona @candidato1.apepatPersona</span>
+                            <span class="titulo">ESTUDIOS TÉCNICOS</span>
+                        </div>
+                        @if (edutec1.Count() == 1 && obtenerEdu1.nroEstTec.Equals(0))
+                        {
+                            <div class="educacion-vacio">
+                                <div class="text-center">
+                                    <p>No registra información</p>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+
+                            foreach (var item in edutec1)
+                            {
+                                <div class="educacion-descripcion">
+                                    <div>
+                                        <p>Centro de estudios</p>
+                                        <p>@item.centEstTec </p>
+                                    </div>
+                                    <div>
+                                        <p>Carrera</p>
+                                        <p>@item.carEstTec</p>
+                                    </div>
+
+                                    <div>
+                                        <p>@item.conEstTec</p>
+                                        <p>Concluido</p>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-6 p-3">
+                    <div class="educacion margen">
+                        <div class="educacion-titulo">
+                            <span class="titulo d-block d-md-none">@candidato2.nomPersona @candidato2.apepatPersona</span>
+                            <span class="titulo">ESTUDIOS TÉCNICOS</span>
+                        </div>
+                        @if (edutec2.Count() == 1 && obtenerEdu2.nroEstTec.Equals(0))
+                        {
+                            <div class="educacion-vacio">
+                                <div class="text-center">
+                                    <p>No registra información</p>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            foreach (var item in edutec2)
+                            {
+                                <div class="educacion-descripcion">
+                                    <div>
+                                        <p>Centro de estudios</p>
+                                        <p>@item.centEstTec </p>
+                                    </div>
+                                    <div>
+                                        <p>Carrera</p>
+                                        <p>@item.carEstTec</p>
+                                    </div>
+
+                                    <div>
+                                        <p>@item.conEstTec</p>
+                                        <p>Concluido</p>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="d-block d-md-flex">
+                @{
+                    var obtenerNoUni1 = edunouni1[0];
+                    var obtenerNoUni2 = edunouni2[0];
+                }
+                <div class="col-12 col-sm-12 col-md-6 p-3">
+                    <div class="educacion margen">
+                        <div class="educacion-titulo">
+                            <span class="titulo d-block d-md-none">@candidato1.nomPersona @candidato1.apepatPersona</span>
+                            <span class="titulo">ESTUDIOS NO UNIVERSITARIOS</span>
+                        </div>
+                        @if (edunouni1.Count() == 1 && obtenerNoUni1.nroEstNoUni.Equals(0))
+                        {
+                            <div class="educacion-vacio">
+                                <div class="text-center">
+                                    <p>No registra información</p>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            foreach (var item in edunouni1)
+                            {
+                                <div class="educacion-descripcion">
+                                    <div>
+                                        <p>Centro de estudios</p>
+                                        <p>@item.cenEstNoUni </p>
+                                    </div>
+                                    <div>
+                                        <p>Carrera</p>
+                                        <p>@item.carEstNoUni</p>
+                                    </div>
+                                    <div>
+                                        <p>Concluido</p>
+                                        <p>@item.conEstNoUni</p>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-6 p-3">
+                    <div class="educacion margen">
+                        <div class="educacion-titulo">
+                            <span class="titulo d-block d-md-none">@candidato2.nomPersona @candidato2.apepatPersona</span>
+                            <span class="titulo">ESTUDIOS NO UNIVERSITARIOS</span>
+                        </div>
+                        @if (edunouni2.Count() == 1 && obtenerNoUni2.nroEstNoUni.Equals(0))
+                        {
+                            <div class="educacion-vacio">
+                                <div class="text-center">
+                                    <p>No registra información</p>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+
+                            foreach (var item in edunouni2)
+                            {
+                                <div class="educacion-descripcion">
+                                    <div>
+                                        <p>Centro de estudios</p>
+                                        <p>@item.cenEstNoUni </p>
+                                    </div>
+                                    <div>
+                                        <p>Carrera</p>
+                                        <p>@item.carEstNoUni</p>
+                                    </div>
+                                    <div>
+                                        <p>Concluido</p>
+                                        <p>@item.conEstNoUni</p>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="d-block d-md-flex">
+
+                @{
+                    var obtenerUni1 = eduuni1[0];
+                    var obtenerUni2 = eduuni2[0];
+                }
+                <div class="col-12 col-sm-12 col-md-6 p-3">
+                    <div class="educacion margen">
+                        <div class="educacion-titulo">
+                            <span class="titulo d-block d-md-none">@candidato1.nomPersona @candidato1.apepatPersona</span>
+                            <span class="titulo">ESTUDIOS UNIVERSITARIOS</span>
+                        </div>
+                        @if (eduuni1.Count() == 1 && obtenerUni1.nroEstUni.Equals(0))
+                        {
+                            <div class="educacion-vacio">
+                                <div class="text-center">
+                                    <p>No registra información</p>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+
+                            foreach (var item in eduuni1)
+                            {
+                                <div class="educacion-descripcion">
+                                    <div class="descripcion">
+                                        <p>Centro de estudios</p>
+                                        <p>@item.cenEstUni </p>
+                                    </div>
+                                    <div class="descripcion">
+                                        <p>Carrera</p>
+                                        <p>@item.carEstUni</p>
+
+                                    </div>
+                                    <div class="descripcion">
+                                        <p>Concluido</p>
+                                        <p>@item.conEstUni</p>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-6 p-3">
+                    <div class="educacion margen">
+                        <div class="educacion-titulo">
+                            <span class="titulo d-block d-md-none">@candidato2.nomPersona @candidato2.apepatPersona</span>
+                            <span class="titulo">ESTUDIOS UNIVERSITARIOS</span>
+                        </div>
+                        @if (eduuni2.Count() == 1 && obtenerUni2.nroEstUni.Equals(0))
+                        {
+                            <div class="educacion-vacio">
+                                <div class="text-center">
+                                    <p>No registra información</p>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+
+                            foreach (var item in eduuni2)
+                            {
+                                <div class="educacion-descripcion">
+                                    <div class="descripcion">
+                                        <p>Centro de estudios</p>
+                                        <p>@item.cenEstUni </p>
+                                    </div>
+                                    <div class="descripcion">
+                                        <p>Carrera</p>
+                                        <p>@item.carEstUni</p>
+
+                                    </div>
+                                    <div class="descripcion">
+                                        <p>Concluido</p>
+                                        <p>@item.conEstUni</p>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="d-block d-md-flex">
+                @{
+                    var obtenerpos1 = edupos1[0];
+                    var obtenerpos2 = edupos2[0];
+                }
+                <div class="col-12 col-sm-12 col-md-6 p-3">
+                    <div class="educacion margen">
+                        <div class="educacion-titulo">
+                            <span class="titulo d-block d-md-none">@candidato1.nomPersona @candidato1.apepatPersona</span>
+                            <span class="titulo">ESTUDIOS POSTGRADO</span>
+                        </div>
+                        @if (edupos1.Count() == 1 && obtenerpos1.nroEstPos.Equals(0))
+                        {
+                            <div class="educacion-vacio">
+                                <div class="text-center">
+                                    <p>No registra información</p>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+
+                            foreach (var item in edupos1)
+                            {
+                                <div class="educacion-descripcion">
+                                    <div>
+                                        <p>Centro de estudios</p>
+                                        <p>@item.cenEstPos </p>
+                                    </div>
+                                    <div>
+                                        <p>Especialización</p>
+                                        <p>@item.espEstPos</p>
+                                    </div>
+                                    <div>
+                                        <p>Concluido</p>
+                                        <p>@item.conEstPos</p>
+                                    </div>
+                                    <div>
+                                        <p>Grado obtenido</p>
+                                        <p>@item.graEstPos</p>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-6 p-3">
+                    <div class="educacion margen">
+                        <div class="educacion-titulo">
+                            <span class="titulo d-block d-md-none">@candidato2.nomPersona @candidato2.apepatPersona</span>
+                            <span class="titulo">ESTUDIOS POSTGRADO</span>
+                        </div>
+                        @if (edupos2.Count() == 1 && obtenerpos2.nroEstPos.Equals(0))
+                        {
+                            <div class="educacion-vacio">
+                                <div class="text-center">
+                                    <p>No registra información</p>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+
+                            foreach (var item in edupos2)
+                            {
+                                <div class="educacion-descripcion">
+                                    <div>
+                                        <p>Centro de estudios</p>
+                                        <p>@item.cenEstPos </p>
+                                    </div>
+                                    <div>
+                                        <p>Especialización</p>
+                                        <p>@item.espEstPos</p>
+                                    </div>
+                                    <div>
+                                        <p>Concluido</p>
+                                        <p>@item.conEstPos</p>
+                                    </div>
+                                    <div>
+                                        <p>Grado obtenido</p>
+                                        <p>@item.graEstPos</p>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="informacion-general d-block">
+
+            <div class="comparacion-titulo-principal">
+                <span>EXPERIENCIA LABORAL</span>
+            </div>
+
+            <div class="d-block d-md-flex">
+
+                <div class="col-12 col-sm-12 col-md-6 p-3">
+                    <div class="educacion margen">
+
+
+                        <div class="experiencia-titulo ">
+
+                            <span>CENTRO DE TRABAJO</span>
+                            <span>OCUPACIÓN</span>
+                            <span>PERIODO</span>
+                        </div>
+
+                        @{
+                            var obtenertra1 = trabaj1[0];
+                            var obtenertra2 = trabaj2[0];
+                        }
+
+
+                        @if (trabaj1.Count() == 1 && obtenertra1.nroTra.Equals(0))
+                        {
+                            <div class="educacion-vacio">
+                                <div class="text-center">
+                                    <p>No registra información</p>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="educacion-descripcion ">
+
+                                @foreach (var item in trabaj1)
+                                {
+                                    <div class="experiencia-descripcion">
+                                        <p>@item.cenTra</p>
+                                        <p>@item.ocuTra</p>
+                                        <p>@item.perTra</p>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-6 p-3">
+                    <div class="educacion margen">
+                        <div class="experiencia-titulo ">
+                            <span>CENTRO DE TRABAJO</span>
+                            <span>OCUPACIÓN</span>
+                            <span>PERIODO</span>
+                        </div>
+                        @if (trabaj2.Count() == 1 && obtenertra2.nroTra.Equals(0))
+                        {
+                            <div class="educacion-vacio">
+                                <div class="text-center">
+                                    <p>No registra información</p>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="educacion-descripcion ">
+
+                                @foreach (var item in trabaj2)
+                                {
+                                    <div class="experiencia-descripcion">
+                                        <p>@item.cenTra</p>
+                                        <p>@item.ocuTra</p>
+                                        <p>@item.perTra</p>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="informacion-general d-block">
+
+            <div class="comparacion-titulo-principal">
+                <span>RELACIÓN DE SENTENCIAS </span>
+            </div>
+
+            @{
+                var obteneramb1 = ambpen1[0];
+                var obteneramb2 = ambpen2[0];
+            }
+
+            <div class="d-block d-lg-flex">
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-3">
+                    <div class="educacion margen">
+                        <div class="experiencia-titulo ">
+                            <span>DELITO</span>
+                            <span>FALLO O PENA</span>
+                            <span>MODALIDAD</span>
+                            <span>CUMPLIMIENTO DEL FALLO</span>
+                        </div>
+
+                        @if (ambpen1.Count() == 1 && obteneramb1.nroAmb.Equals(0))
+                        {
+                            <div class="educacion-vacio">
+                                <div class="text-center">
+                                    <p>No registra información</p>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="educacion-descripcion ">
+                                @foreach (var item in ambpen1)
+                                {
+                                    <div class="experiencia-descripcion">
+                                        <p>@item.delAmb</p>
+                                        <p>@item.falAmb</p>
+                                        <p>@item.desMod</p>
+                                        <p>@item.cumAmb</p>
+
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-3">
+
+                    <div class="educacion margen">
+                        <div class="experiencia-titulo ">
+                            <span>DELITO</span>
+                            <span>FALLO O PENA</span>
+                            <span>MODALIDAD</span>
+                            <span>CUMPLIMIENTO DEL FALLO</span>
+                        </div>
+                        @if (ambpen2.Count() == 1 && obteneramb2.nroAmb.Equals(0))
+                        {
+                            <div class="educacion-vacio">
+                                <div class="text-center">
+                                    <p>No registra información</p>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="educacion-descripcion ">
+                                @foreach (var item in ambpen2)
+                                {
+                                    <div class="experiencia-descripcion">
+                                        <p>@item.delAmb</p>
+                                        <p>@item.falAmb</p>
+                                        <p>@item.desMod</p>
+                                        <p>@item.cumAmb</p>
+
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="d-block d-lg-flex">
+                @{
+                    var obtenerotroamb1 = otramb1[0];
+                    var obtenerotroamb2 = otramb2[0];
+                }
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-3">
+
+                    <div class="educacion margen">
+                        <div class="experiencia-titulo ">
+                            <span>DELITO</span>
+                            <span>FALLO O PENA</span>
+
+                        </div>
+
+                        @if (otramb1.Count() == 1 && obtenerotroamb1.nroOtroPen.Equals(0))
+                        {
+                            <div class="educacion-vacio">
+                                <div class="text-center">
+                                    <p>No registra información</p>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="educacion-descripcion ">
+                                @foreach (var item in otramb1)
+                                {
+                                    <div class="experiencia-descripcion">
+                                        <p>@item.delOtroPen</p>
+                                        <p>@item.falOtroPen</p>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-12 col-lg-6 p-3">
+
+                    <div class="educacion margen">
+                        <div class="experiencia-titulo ">
+                            <span>DELITO</span>
+                            <span>FALLO O PENA</span>
+
+                        </div>
+                        @if (otramb2.Count() == 1 && obtenerotroamb2.nroOtroPen.Equals(0))
+                        {
+                            <div class="educacion-vacio">
+                                <div class="text-center">
+                                    <p>No registra información</p>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="educacion-descripcion ">
+                                @foreach (var item in otramb2)
+                                {
+                                    <div class="experiencia-descripcion">
+                                        <p>@item.delOtroPen</p>
+                                        <p>@item.falOtroPen</p>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

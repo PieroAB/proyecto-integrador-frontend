@@ -1,0 +1,428 @@
+﻿@using Proyecto_Elecciones2021.Models;
+@model Proyecto_Elecciones2021.Models.Persona
+
+@{
+    ViewBag.Title = "Hoja de Vida";
+}
+
+<div class="cuerpo">
+
+    @Html.Partial("_Sidebar")
+
+    <div class="home">
+
+        <div class="cabecera flex-column flex-md-row">
+            <div class="partido-titulo d-block d-md-flex">
+                <div class="w-100 d-flex align-items-center mb-3">
+                    <img src="@Url.Content(((Persona)ViewBag.personahv).imagenPartido)"
+                            alt="" />
+
+                    <p>@(((Persona)ViewBag.personahv).nomPersona) @(((Persona)ViewBag.personahv).apepatPersona) @(((Persona)ViewBag.personahv).apematPersona) </p>
+                </div>
+            
+            </div>
+        </div>
+
+        <div class="candidato-perfil d-block">
+
+            <div class="candidato-foto col-12 col-sm-4 col-md-4 ">
+                <div>
+                    <div class="candidato-foto-f front">
+                        <img src="@Url.Content(((Persona)ViewBag.personahv).fotoPersona)" alt="@(((Persona)ViewBag.personahv).dniPersona)" />
+                    </div>
+
+                    <div class="candidato-foto-b back">
+                        <img src="@Url.Content(((Persona)ViewBag.personahv).imagenPartido)" alt="@(((Persona)ViewBag.personahv).dniPersona)" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="candidato d-block d-sm-flex flex-row ">
+
+
+                <div class="info col-12 col-sm-6 col-md-3 ">
+                    <span> DATOS PERSONALES </span>
+                    <p>DNI: <span>@(((Persona)ViewBag.personahv).dniPersona)</span> </p>
+                    <p>SEXO: <span> @(((Persona)ViewBag.personahv).sexoPersona) </span></p>
+                    <p>APELLIDO PATERNO: <span>@(((Persona)ViewBag.personahv).apepatPersona)</span></p>
+                    <p>APELLIDO MATERNO: <span>@(((Persona)ViewBag.personahv).apematPersona)</span></p>
+                    <p>NOMBRES: <span> @(((Persona)ViewBag.personahv).nomPersona)</span></p>
+
+                </div>
+
+                <div class="info col-12 col-sm-6 col-md-3">
+                    <span>LUGAR DE NACIMIENTO </span>
+                    <p>FECHA DE NACIMIENTO: <span> @(((Persona)ViewBag.personahv).fecnacPersona)</span></p>
+                    <p>PAIS: <span> @(((Persona)ViewBag.personahv).nombPaisNac)</span></p>
+                    <p>DEPARTAMENTO: <span> @(((Persona)ViewBag.personahv).nombDepartamentoNac)</span></p>
+                    <p>PROVINCIA: <span> @(((Persona)ViewBag.personahv).nombProvinciaNac)</span></p>
+                    <p>DISTRITO: <span> @(((Persona)ViewBag.personahv).nombDistritoNac)</span></p>
+                </div>
+
+                <div class="info col-12 col-sm-6 col-md-3 ">
+                    <span>DATOS GENERALES </span>
+                    <p>CARGO A POSTULAR: <span> @(((Persona)ViewBag.personahv).descCargo)</span></p>
+                    <p>LUGAR AL QUE POSTULA: <span> @(((Persona)ViewBag.personahv).lugarCandidato)</span></p>
+                    <p>ORGANIZACIÓN POLÍTICA: <span> @(((Persona)ViewBag.personahv).nombrePartido)</span></p>
+                </div>
+                <div class="info col-12 col-sm-6 col-md-3 ">
+                    <span>LUGAR DE RESIDENCIA </span>
+                    <p>DEPARTAMENTO: <span> @(((Persona)ViewBag.personahv).nombDepartamentoRes)</span></p>
+                    <p>PROVINCIA: <span> @(((Persona)ViewBag.personahv).nombProvinciaRes)</span></p>
+                    <p>DISTRITO: <span> @(((Persona)ViewBag.personahv).nombDistritoRes)</span></p>
+                    <p>DIRECCIÓN: <span> @(((Persona)ViewBag.personahv).direccRes)</span></p>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <div class="informacion-general">
+            <div class="hoja-vida d-block d-md-flex">
+                <div>
+                    <p>Hoja de Vida del candidato</p>
+                </div>
+
+                <div>
+                    <a class="btn btn-info col-12 col-sm-8 col-md-10 col-lg-7" target="_blank" href="@Url.Content(((Persona)ViewBag.personahv).hojaVidaPer)">Ver Hoja de Vida completa</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="informacion-general ">
+
+            <div class="comparacion-titulo-principal">
+
+                <span>INFORMACION ACADÉMICA</span>
+            </div>
+
+            <div class="educacion">
+                <div class="educacion-titulo">
+                    <span class="titulo d-block d-md-none"></span>
+                    <span class="titulo">EDUCACIÓN BÁSICA</span>
+                </div>
+                @{
+                    var obteneredubas = (EducacionBasicaHV)ViewBag.edubashv;
+                    var pri = obteneredubas.primaria;
+                    var sec = obteneredubas.secundaria;
+                }
+                @if (pri == null && sec == null)
+                {
+                    <div class="educacion-vacio">
+                        <div class="text-center">
+                            <p>No registra información</p>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="educacion-descripcion">
+                        <div>
+                            <p>Primaria</p>
+                            <p>@(((EducacionBasicaHV)ViewBag.edubashv).primaria)</p>
+                        </div>
+                        <div>
+                            <p>Secundaria</p>
+                            <p>@(((EducacionBasicaHV)ViewBag.edubashv).secundaria)</p>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="educacion">
+                <div class="educacion-titulo">
+                    <span class="titulo d-block d-md-none"></span>
+                    <span class="titulo">ESTUDIOS TÉCNICOS</span>
+                </div>
+                @{
+                    var obtenertec = (List<EstudiosTecnicosHV>)ViewBag.esttechv;
+                    var indice = obtenertec[0];
+                    var resultado = indice.nroEstTec;
+                }
+                @if (obtenertec.Count() == 1 && (resultado).Equals(0))
+                {
+                    <div class="educacion-vacio">
+                        <div class="text-center">
+                            <p>No registra información</p>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    foreach (var item in obtenertec)
+                    {
+                        <div class="educacion-descripcion">
+                            <div>
+                                <p>Centro de estudios</p>
+                                <p>@item.centEstTec </p>
+                            </div>
+                            <div>
+                                <p>Carrera</p>
+                                <p>@item.carEstTec</p>
+                            </div>
+
+                            <div>
+                                <p>Concluido</p>
+                                <p>@item.conEstTec</p>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+
+            <div class="educacion">
+                <div class="educacion-titulo">
+                    <span class="titulo d-block d-md-none"></span>
+                    <span class="titulo">ESTUDIOS NO UNIVERSITARIOS</span>
+                </div>
+
+                @{
+                    var obtenernouni = (List<EstudiosNoUniversitariosHV>)ViewBag.estnounihv;
+                    var indicenouni = obtenernouni[0];
+                    var resultadonouni = indicenouni.nroEstNoUni;
+                }
+                @if (obtenernouni.Count() == 1 && (resultadonouni).Equals(0))
+                {
+                    <div class="educacion-vacio">
+                        <div class="text-center">
+                            <p>No registra información</p>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    foreach (var item in obtenernouni)
+                    {
+                        <div class="educacion-descripcion">
+                            <div>
+                                <p>Centro de estudios</p>
+                                <p>@item.cenEstNoUni </p>
+                            </div>
+                            <div>
+                                <p>Carrera</p>
+                                <p>@item.carEstNoUni</p>
+                            </div>
+                            <div>
+                                <p>Concluido</p>
+                                <p>@item.conEstNoUni</p>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+
+            <div class="educacion">
+                <div class="educacion-titulo">
+                    <span class="titulo d-block d-md-none"></span>
+                    <span class="titulo">ESTUDIOS UNIVERSITARIOS</span>
+                </div>
+
+                @{
+                    var obteneruni = (List<EstudiosUniversitariosHV>)ViewBag.estunihv;
+                    var indiceuni = obteneruni[0];
+                    var resultadouni = indiceuni.nroEstUni;
+                }
+                @if (obteneruni.Count() == 1 && (resultadouni).Equals(0))
+                {
+                    <div class="educacion-vacio">
+                        <div class="text-center">
+                            <p>No registra información</p>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    foreach (var item in obteneruni)
+                    {
+                        <div class="educacion-descripcion">
+                            <div class="descripcion">
+                                <p>Centro de estudios</p>
+                                <p>@item.cenEstUni </p>
+                            </div>
+                            <div class="descripcion">
+                                <p>Carrera</p>
+                                <p>@item.carEstUni</p>
+
+                            </div>
+                            <div class="descripcion">
+                                <p>Concluido</p>
+                                <p>@item.conEstUni</p>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+
+            <div class="educacion">
+                <div class="educacion-titulo">
+                    <span class="titulo d-block d-md-none"></span>
+                    <span class="titulo">ESTUDIOS POSTGRADO</span>
+                </div>
+
+                @{
+                    var obtenerpos = (List<EstudiosPostgradoHV>)ViewBag.estposhv;
+                    var indicepos = obtenerpos[0];
+                    var resultadopos = indicepos.nroEstPos;
+                }
+
+                @if (obtenerpos.Count() == 1 && (resultadopos).Equals(0))
+                {
+                    <div class="educacion-vacio">
+                        <div class="text-center">
+                            <p>No registra información</p>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    foreach (var item in obtenerpos)
+                    {
+                        <div class="educacion-descripcion">
+                            <div>
+                                <p>Centro de estudios</p>
+                                <p>@item.cenEstPos </p>
+                            </div>
+                            <div>
+                                <p>Especialización</p>
+                                <p>@item.espEstPos</p>
+                            </div>
+                            <div>
+                                <p>Concluido</p>
+                                <p>@item.conEstPos</p>
+                            </div>
+                            <div>
+                                <p>Grado obtenido</p>
+                                <p>@item.graEstPos</p>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+        <div class="informacion-general experiencia-laboral">
+            <div class="comparacion-titulo-principal">
+                <span>EXPERIENCIA LABORAL</span>
+            </div>
+
+            <div class="educacion">
+                <div class="experiencia-titulo ">
+                    <span>CENTRO DE TRABAJO</span>
+                    <span>OCUPACIÓN</span>
+                    <span>PERIODO</span>
+                </div>
+                @{
+                    var obtenertra = (List<TrabajosHV>)ViewBag.trabajoshv;
+                    var indicetra = obtenertra[0];
+                    var resultadotra = indicetra.nroTra;
+                }
+
+                @if (obtenertra.Count() == 1 && resultadotra.Equals(0))
+                {
+                    <div class="educacion-vacio">
+                        <div class="text-center">
+                            <p>No registra información</p>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="educacion-descripcion ">
+                        @foreach (var item in obtenertra)
+                        {
+
+                            <div class="experiencia-descripcion">
+                                <p>@item.cenTra</p>
+                                <p>@item.ocuTra</p>
+                                <p>@item.perTra</p>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="informacion-general relacion-sentencias">
+            <div class="comparacion-titulo-principal">
+                <span>RELACIÓN DE SENTENCIAS</span>
+            </div>
+
+
+            <div class="educacion">
+                <div class="experiencia-titulo ">
+                    <span>DELITO</span>
+                    <span>FALLO O PENA</span>
+                    <span>MODALIDAD</span>
+                    <span>CUMPLIMIENTO DEL FALLO</span>
+                </div>
+
+                @{
+                    var obteneramb = (List<AmbitosPenalesHV>)ViewBag.ambpenhv;
+                    var indiceamb = obteneramb[0];
+                    var resultadoamb = indiceamb.nroAmb;
+                }
+
+                @if (obteneramb.Count() == 1 && resultadoamb.Equals(0))
+                {
+                    <div class="educacion-vacio">
+                        <div class="text-center">
+                            <p>No registra información</p>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="educacion-descripcion ">
+                        @foreach (var item in obteneramb)
+                        {
+                            <div class="experiencia-descripcion">
+                                <p>@item.delAmb</p>
+                                <p>@item.falAmb</p>
+                                <p>@item.desMod</p>
+                                <p>@item.cumAmb</p>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+
+
+            <div class="educacion">
+                <div class="experiencia-titulo ">
+                    <span>DELITO</span>
+                    <span>FALLO O PENA</span>
+
+                </div>
+                @{
+                    var obtenerotrapen = (List<OtrasPenalidadesHV>)ViewBag.otrapenhv;
+                    var indiceotrapen = obtenerotrapen[0];
+                    var resultadootrapen = indiceotrapen.nroOtroPen;
+                }
+                @if (obtenerotrapen.Count() == 1 && resultadootrapen.Equals(0))
+                {
+                    <div class="educacion-vacio">
+                        <div class="text-center">
+                            <p>No registra información</p>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="educacion-descripcion ">
+                        @foreach (var item in obtenerotrapen)
+                        {
+                            <div class="experiencia-descripcion">
+                                <p>@item.delOtroPen</p>
+                                <p>@item.falOtroPen</p>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+

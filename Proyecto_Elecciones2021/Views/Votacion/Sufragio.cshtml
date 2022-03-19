@@ -1,0 +1,466 @@
+﻿@using Proyecto_Elecciones2021.Models;
+@model Proyecto_Elecciones2021.Models.Votacion
+
+@{
+    ViewBag.Title = "Sufragio";
+}
+@{
+    var partpres = (List<FichaPresidencial>)ViewBag.fpresidencial;
+    var partcong = (List<FichaCongresal>)ViewBag.fcongresal;
+    var partparl = (List<FichaParlamental>)ViewBag.fparlamental;
+    var obtenerindicepres = partpres[0];
+    var obtenerindicecong = partcong[0];
+    var obtenerindiceparl = partparl[0];
+
+    var endTime = DateTime.UtcNow.AddSeconds(301);
+    var timeRemaining = TimeSpan.FromTicks(endTime.Ticks - DateTime.UtcNow.Ticks).TotalSeconds;
+
+}
+
+<div class="sufragio-header">
+    <div class="imagen-sufragio"><img src="~/Imagenes/logos/gobierno.png" alt="Gobierno del Perú" class="gob-peru" /></div>
+    <div class="titulo-sufragio">
+        <h1>ELECCIONES GENERALES </h1>
+        <p class="sufragio-sub">PRESIDENTE - CONGRESO - PARLAMENTO ANDINO</p>
+        <p>PERIODO 2021 - 2026 </p>
+        <p>ORGANISMOS ELECTORALES</p>
+        <p>JNE - ONPE - RENIEC </p>
+        <p>VOTO VIRTUAL</p>
+    </div>
+    <div class="imagen-sufragio"><img src="~/Imagenes/logos/onpe.png" alt="ONPE" class="onpe" /></div>
+</div>
+
+<div class="tiempo-cabecera">
+    <h4 class="tiempo-sufragio">TIEMPO RESTANTE - <span id="minutos"></span>:<span id="segundos"></span></h4>
+    <p class="tiempo-importante"> * IMPORTANTE - Una vez acabado el tiempo límite se le redireccionará a la página de Inicio y tendrá que volver a loguearse.</p>
+
+</div>
+
+@using (Html.BeginForm("Sufragio", "Votacion", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+       
+
+    <div class="voto-cabecera-presidente">
+
+        <h3>Presidente y Vicepresidentes</h3>
+        <p>Seleccione dentro del recuadro en blanco para seleccionar al candidato de su preferencia</p>
+
+    </div>
+
+
+    <div id="fichapresidencial">
+        @if (partpres.Count() == 1 && obtenerindicepres.codPartido.Equals(0))
+        {
+            <h4>NO PRESENTA CANDIDATOS A LA PRESIDENCIA, DELE EN CONTINUAR</h4>
+        }
+        else
+        {
+
+            <div class="bloquepresidencial">
+                @foreach (var item in partpres)
+                {
+
+                    <div class="partidovotopre">
+                        <div class="nombrepartido">
+                            <p>
+                                @item.nombrePartido
+                            </p>
+                        </div>
+
+                        <div class="imagennombrepartido">
+                            <img src="@Url.Content(@item.imagenPartido)" alt="@item.nombrePartido" />
+                            <img src="@Url.Content(@item.fotoPresidente)" alt="@item.fotoPresidente " />
+
+                            <input type="checkbox" id="@item.codPartido" class="check-presidencia" />
+
+
+                        </div>
+                    </div>
+                }
+
+            </div>
+            @Html.HiddenFor(model => model.codPartidoPresidente, new { htmlAttributes = new { @type = "text", @maxlength = 2 } })
+        }
+    </div>
+
+
+    <div class="instrucciones-congreso">
+        <div class="voto-cabecera-congreso">
+            <h3>Congresistas</h3>
+            <p>SELECCIONE DENTRO DEL RECUADRO EN BLANCO PARA SELECCIONAR EL PARTIDO POLÍTICO DE SU PREFERENCIA</p>
+
+        </div>
+
+        <div class="voto-cabecera-congreso-pre">
+            <h3>Voto Preferencial</h3>
+            <p>Si desea coloque dentro de los recuadros uno o dos números de los candidatos de su preferencia</p>
+
+        </div>
+    </div>
+
+    <div id="fichacongresal">
+        @if (partcong.Count() == 1 && obtenerindicecong.codPartido.Equals(0))
+        {
+            <h4>NO PRESENTA CANDIDATOS AL CONGRESO, DELE EN CONTINUAR</h4>
+        }
+        else
+        {
+            <div class="bloquecongresal">
+
+                @foreach (var item in partcong)
+
+                {
+
+                    <div class="partidovotocong">
+                        <div class="nombrepartidoc">
+                            <p>
+                                @item.nombrePartido
+                            </p>
+                        </div>
+
+                        <div class="imagennombrepartidoc ">
+                            <img src="@Url.Content(@item.imagenPartido)" alt="@item.nombrePartido" />
+                            <input type="checkbox" id="@item.codPartido" class="check-congreso" />
+                        </div>
+
+                        <div class="votopreferencial">
+                            <div class="marca">
+                                @Html.Editor(item.codPartido.ToString(), new
+                           {
+                               htmlAttributes = new
+                               {
+                                   @type = "text",
+                                   @maxlength = 2,
+
+                                   @class = "numero obtenerValorCandidato1 ",
+                                   @id = item.codPartido,
+                                   onkeyup = "obtenerValor(this)",
+                                   onchange = "limpiarNumero(this)",
+                                   onkeypress = "return validarNumero(event)"
+                               }
+                           })
+                            </div>
+
+                            <div class="marca">
+                                @Html.Editor(item.codPartido.ToString(), new
+                           {
+                               htmlAttributes = new
+                               {
+                                   @type = "text",
+                                   @maxlength = 2,
+                                   @class = "numero obtenerValorCandidato2",
+                                   @id = item.codPartido,
+                                   onkeyup = "obtenerValor(this)",
+                                   onchange = "limpiarNumero(this)",
+                                   onkeypress = "return validarNumero(event)"
+                               }
+                           })
+                            </div>
+
+                        </div>
+
+                    </div>
+                }
+                @Html.HiddenFor(model => model.codPartidoCongresal, new { htmlAttributes = new { @type = "text", @maxlength = 2 } })
+                @Html.HiddenFor(model => model.nroCandidato1Congresal, new { htmlAttributes = new { @type = "text", @maxlength = 2 } })
+                @Html.HiddenFor(model => model.nroCandidato2Congresal, new { htmlAttributes = new { @type = "text", @maxlength = 2 } })
+            </div>
+        }
+
+    </div>
+
+
+    <div class="instrucciones-congreso">
+        <div class="voto-cabecera-congreso">
+            <h3>Parlamento Andino</h3>
+            <p>SELECCIONE DENTRO DEL RECUADRO EN BLANCO PARA SELECCIONAR EL PARTIDO POLÍTICO DE SU PREFERENCIA</p>
+
+        </div>
+
+        <div class="voto-cabecera-congreso-pre">
+            <h3>Voto Preferencial</h3>
+            <p>Si desea coloque dentro de los recuadros uno o dos números de los candidatos de su preferencia</p>
+
+        </div>
+    </div>
+
+    <div id="fichaparlamental">
+        @if (partparl.Count() == 1 && obtenerindiceparl.codPartido.Equals(0))
+        {
+            <h4>NO PRESENTA CANDIDATOS AL PARLAMENTO, DELE EN FINALIZAR</h4>
+        }
+        else
+        {
+            <div class="bloqueparlamental">
+                @foreach (var item in partparl)
+                {
+
+                    <div class="partidovotocong">
+                        <div class="nombrepartidoc parlamento-color">
+                            <p>@item.nombrePartido</p>
+                        </div>
+
+                        <div class="imagennombrepartidoc parlamento-color">
+                            <img src="@Url.Content(@item.imagenPartido)" alt="@item.nombrePartido" />
+                            <input type="checkbox" id="@item.codPartido" class="check-parlamento" />
+                        </div>
+
+                        <div class="votopreferencial">
+                            <div class="marca">
+                                @Html.Editor(item.codPartido.ToString(), new
+                           {
+                               htmlAttributes = new
+                               {
+                                   @type = "text",
+                                   @maxlength = 2,
+
+                                   @class = "numero obtenerValorCandidatoP1 ",
+                                   @id = item.codPartido,
+                                   onkeyup = "obtenerValor(this)",
+                                   onchange = "limpiarNumero(this)",
+                                   onkeypress = "return validarNumero(event)"
+                               }
+                           })
+                            </div>
+
+                            <div class="marca">
+                                @Html.Editor(item.codPartido.ToString(), new
+                           {
+                               htmlAttributes = new
+                               {
+                                   @type = "text",
+                                   @maxlength = 2,
+                                   @class = "numero obtenerValorCandidatoP2",
+                                   @id = item.codPartido,
+                                   onkeyup = "obtenerValor(this)",
+                                   onchange = "limpiarNumero(this)",
+                                   onkeypress = "return validarNumero(event)"
+                               }
+                           })
+                            </div>
+
+                        </div>
+
+                    </div>
+                }
+                @Html.HiddenFor(model => model.codPartidoParlamental, new { htmlAttributes = new { @type = "text", @maxlength = 2 } })
+                @Html.HiddenFor(model => model.nroCandidato1Parlamental, new { htmlAttributes = new { @type = "text", @maxlength = 2 } })
+                @Html.HiddenFor(model => model.nroCandidato2Parlamental, new { htmlAttributes = new { @type = "text", @maxlength = 2 } })
+            </div>
+        }
+
+    </div>
+
+    <div class="col-12 m-2 mb-4">
+        <button id="enviar" class="btn btn-success col-3 enviar-sufragio" >ENVIAR VOTO</button>
+    </div>
+}
+
+<script>
+    var remSeconds = @timeRemaining;
+    var secondsCounter = remSeconds % 60;
+
+    function formatNumber(numero) {
+        if (numero < 10) return '0' + numero;
+        else return '' + numero;
+    }
+
+    function startTick() {
+        document.getElementById('segundos').innerText = formatNumber(secondsCounter);
+        document.getElementById('minutos').innerText = formatNumber(parseInt(remSeconds/60));
+
+        var _tick = setInterval(function ()
+        {
+            if (remSeconds > 0) {
+                remSeconds = remSeconds - 1;
+                secondsCounter = secondsCounter - 1;
+                document.getElementById('segundos').innerText = formatNumber(secondsCounter);
+                document.getElementById('minutos').innerText = formatNumber(parseInt(remSeconds/60));
+                if (secondsCounter == 0) {
+                    secondsCounter = 60;
+                }
+            }
+            else {
+
+
+            }
+        }, 1000);
+    }
+    startTick();
+
+    setTimeout(function(){
+        var boton = document.getElementById('enviar');
+
+                   alert('Su sesión a expirado, vuelva a ingresar');
+
+
+                   boton.click();
+    }, 301000);
+
+    const presidente = document.getElementById('codPartidoPresidente');
+    const congreso = document.getElementById('codPartidoCongresal');
+    const parlamento = document.getElementById('codPartidoParlamental');
+
+    const checkspre = document.getElementsByClassName('check-presidencia');
+    const checkscon = document.getElementsByClassName('check-congreso');
+     const checkspar = document.getElementsByClassName('check-parlamento');
+
+    const a = document.getElementsByClassName('obtenerValorCandidato1');
+    const b = document.getElementsByClassName('obtenerValorCandidato2');
+
+    const ap = document.getElementsByClassName('obtenerValorCandidatoP1');
+    const bp = document.getElementsByClassName('obtenerValorCandidatoP2');
+
+    const candidato1 = document.getElementById('nroCandidato1Congresal');
+    const candidato2 = document.getElementById('nroCandidato2Congresal');
+
+    const candidatop1 = document.getElementById('nroCandidato1Parlamental');
+    const candidatop2 = document.getElementById('nroCandidato2Parlamental');
+
+    function disabled(){
+        for(let i = 0; i < a.length; i++){
+            a[i].disabled = true;
+            b[i].disabled = true;
+            a[i].value="";
+            b[i].value="";
+        };
+    }
+    disabled();
+
+    function disabled1(){
+        for(let i = 0; i < ap.length; i++){
+            ap[i].disabled = true;
+            bp[i].disabled = true;
+            ap[i].value="";
+            bp[i].value="";
+        };
+    }
+    disabled1();
+
+
+    for (let check of checkspre) {
+        check.addEventListener("click", function () {
+           if(this.checked){
+                for (let checke of checkspre){
+                    checke.checked = false;
+                }
+                this.checked = true;
+                presidente.value = this.id;
+            }
+            else{
+                presidente.value = 0;
+            }
+        });
+    }
+
+
+    for(let check of checkscon){
+        check.addEventListener("click", function () {
+           if(this.checked){
+                for (let checke of checkscon){
+                    checke.checked = false;
+                }
+                this.checked = true;
+                congreso.value = this.id;
+
+                disabled();
+
+                a[this.id-1].disabled=false;
+                b[this.id-1].disabled=false;
+
+                candidato1.value = 0;
+                candidato2.value = 0;
+            }
+            else{
+                congreso.value = 0;
+                candidato1.value = 0;
+                candidato2.value = 0;
+                disabled();
+
+            }
+        });
+    }
+
+    for(let check of checkspar){
+        check.addEventListener("click", function () {
+           if(this.checked){
+                for (let checke of checkspar){
+                    checke.checked = false;
+                }
+                this.checked = true;
+                parlamento.value = this.id;
+
+                disabled1();
+
+                ap[this.id-1].disabled=false;
+                bp[this.id-1].disabled=false;
+
+                candidatop1.value = 0;
+                candidatop2.value = 0;
+            }
+            else{
+                parlamento.value = 0;
+                candidatop1.value = 0;
+                candidatop2.value = 0;
+                disabled1();
+
+            }
+        });
+    }
+
+
+    function validarNumero(e){
+        var charCode = (e.which) ? e.which : e.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57)){
+            return false;
+        }
+        return true;
+    }
+
+
+    function limpiarNumero(obj) {
+      obj.value = obj.value.replace(/\D/g, '');
+    }
+
+    function obtenerValor(obj){
+       limpiarNumero(obj);
+       obtenerCandidato(obj);
+
+    }
+
+    function obtenerCandidato(obj){
+        if(obj.classList.contains('obtenerValorCandidato1')){
+            if(obj.value == "") {
+                 candidato1.value = 0;
+            }
+            else candidato1.value = obj.value;
+        }
+
+        else if(obj.classList.contains('obtenerValorCandidato2')){
+            if(obj.value == "") {
+               candidato2.value = 0;
+            }
+            else candidato2.value = obj.value;
+        }
+       else if(obj.classList.contains('obtenerValorCandidatoP1')){
+            if(obj.value == "") {
+                candidatop1.value = 0;
+            }
+            else candidatop1.value = obj.value;
+        }
+
+
+        else if(obj.classList.contains('obtenerValorCandidatoP2')){
+            if(obj.value == "") {
+                candidatop2.value = 0;
+            }
+            else candidatop2.value = obj.value;
+        }
+
+    }
+
+
+
+</script>
+

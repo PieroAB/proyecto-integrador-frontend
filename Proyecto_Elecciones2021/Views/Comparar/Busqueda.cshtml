@@ -1,0 +1,71 @@
+﻿@using Proyecto_Elecciones2021.Models;
+@{
+    ViewBag.Title = "Busqueda";
+}
+<style>
+  
+</style>
+
+<div class="cuerpo">
+
+    @Html.Partial("_Sidebar")
+
+    <div class="home">
+       
+
+        <div class="partido-politicos fondo">
+            <p>COMPARAR CANDIDATOS Y PLANES DE GOBIERNOS</p>
+        </div>
+
+
+        @using (Html.BeginForm())
+        {
+            <div class="d-flex contenedor">
+                <div class="col-12 col-sm-12 col-md-4">
+                    @Html.DropDownList("seleccion", (SelectList)ViewBag.tipoEleccion, new { @class = " btn btn-default col-10 col-sm-8 col-md-12 ", @id = "tipo" })
+                </div>
+            </div>
+
+            <div class="oculto" id="partido">
+                <div class="col-12 col-sm-12 col-md-4 form-group">
+                    @Html.DropDownList("part1", (SelectList)ViewBag.partidos, new { @class = "btn btn-default col-10 col-sm-8 col-md-12 ", @id = "partido1" })
+                </div>
+
+                <div class="col-12 col-sm-12 col-md-4 form-group">
+                    @Html.DropDownList("part2", (SelectList)ViewBag.partidos, new { @class = "btn btn-default col-10 col-sm-8 col-md-12", @id = "partido2" })
+                </div>
+
+            </div>
+            <div class="text-danger alerta">
+                @ViewBag.mensaje
+            </div>
+
+            <div class="col-12">
+                <button class="btn btn-danger col-12 col-sm-4 col-md-3" id="busqueda">Buscar</button>
+            </div>
+        }
+
+
+
+    </div>
+</div>
+
+<script>
+    var tipo = document.getElementById('tipo');
+    var partido = document.getElementById('partido');
+    var partido1 = document.getElementById('partido1');
+    var partido2 = document.getElementById('partido2');
+    tipo.addEventListener("change", Refresh);
+    Refresh();
+    Click();
+    function Refresh() {
+        if (tipo.value == 1 || tipo.value == 2) {
+            partido.classList.remove('oculto');
+            partido.classList.add('contenedor');
+        }
+        else {
+            partido.classList.add('oculto');  
+            partido.classList.remove('contenedor');
+        }
+    }
+</script>
